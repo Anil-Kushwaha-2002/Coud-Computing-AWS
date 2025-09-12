@@ -1,4 +1,164 @@
 # AWS
+# Coud-Computing-AWS
+```
+✅ 1. What is AWS?
+AWS (Amazon Web Services) is a cloud platform that offers a wide range of services like compute power, storage, databases, networking, security, analytics, and more.
+It helps companies scale their infrastructure without owning physical servers.
+
+✅ 2. Key AWS Concepts
+Concept	Description
+Cloud Computing	On-demand delivery of IT resources over the internet.
+IaaS	Infrastructure as a Service (EC2, S3, VPC).
+PaaS	Platform as a Service (Elastic Beanstalk, RDS).
+SaaS	Software as a Service (Gmail, Office 365).
+
+✅ 3. AWS Global Infrastructure
+Regions → Geographical locations (ex: us-east-1, ap-south-1).
+Availability Zones (AZ) → Isolated data centers in a Region.
+Edge Locations → Used by CloudFront (CDN).
+
+✅ 4. Core AWS Services
+1️⃣ Compute Services
+➔ EC2 (Elastic Compute Cloud)
+Launch virtual servers (instances).
+Example:
+Launch EC2 instance (Amazon Linux).
+SSH Access Example:
+ssh -i mykey.pem ec2-user@ec2-public-ip
+➔ Lambda (Serverless Compute)
+Run code without managing servers.
+Example: Simple Python Lambda function
+def lambda_handler(event, context):
+    return {
+        'statusCode': 200,
+        'body': 'Hello from AWS Lambda!'
+    }
+
+2️⃣ Storage Services
+➔ S3 (Simple Storage Service)
+Object storage for files.
+Example: Upload file using AWS CLI
+aws s3 cp sample.txt s3://my-bucket-name/sample.txt
+➔ EBS (Elastic Block Store)
+Persistent block-level storage attached to EC2.
+
+3️⃣ Database Services
+➔ RDS (Relational Database Service)
+Managed SQL databases (MySQL, PostgreSQL).
+Example: Connect to RDS
+mysql -h your-rds-endpoint.amazonaws.com -u admin -p
+➔ DynamoDB
+NoSQL database.
+
+4️⃣ Networking Services
+➔ VPC (Virtual Private Cloud)
+Isolated network.
+Example Components of VPC
+Subnets
+Route Tables
+Internet Gateway (IGW)
+Security Groups
+➔ CloudFront
+Content Delivery Network (CDN).
+Use Case Example: Distribute static website assets globally with low latency.
+
+✅ 5. Security in AWS
+➔ IAM (Identity and Access Management)
+Create Users, Roles, Policies.
+Example: Create IAM User CLI
+aws iam create-user --user-name AnilUser
+Example: Attach Policy
+aws iam attach-user-policy --user-name AnilUser --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+✅ 6. Monitoring & Logging
+➔ CloudWatch
+Monitor metrics (CPU usage, memory).
+Example: Create CloudWatch Alarm
+
+aws cloudwatch put-metric-alarm \
+    --alarm-name HighCPUUtilization \
+    --metric-name CPUUtilization \
+    --namespace AWS/EC2 \
+    --statistic Average \
+    --period 300 \
+    --threshold 80 \
+    --comparison-operator GreaterThanThreshold \
+    --evaluation-periods 2 \
+    --alarm-actions arn:aws:sns:region:account-id:my-sns-topic
+
+➔ CloudTrail
+Track API activity and changes.
+
+✅ 7. Deployment & Automation
+➔ CloudFormation
+Infrastructure as Code (IaC).
+Example: Simple CloudFormation YAML Template
+
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0abcdef1234567890
+
+➔ CodePipeline
+CI/CD Automation.
+
+✅ 8. Hands-on Example: Deploy Simple Website on S3 + CloudFront
+Step 1: Create S3 Bucket
+aws s3 mb s3://my-website-bucket
+
+Step 2: Enable Static Website Hosting
+aws s3 website s3://my-website-bucket --index-document index.html
+
+Step 3: Upload Files
+aws s3 cp index.html s3://my-website-bucket/index.html
+
+Step 4: Configure CloudFront
+
+Create distribution via AWS Console.
+
+Use S3 bucket as origin.
+
+✅ 9. Basic Pricing Concept
+EC2: Pay per second.
+S3: Pay per GB stored.
+Lambda: Pay per request and compute time.
+Free Tier Available: Useful for beginners.
+
+✅ 10. Best Practices
+Use IAM Roles instead of hardcoding keys.
+Enable versioning in S3 for backup.
+Set up multi-AZ for RDS for High Availability.
+Use security groups to allow only required ports.
+
+✅ 11. Useful AWS CLI Commands
+Command	Description
+aws s3 ls	List S3 buckets
+aws ec2 describe-instances	List EC2 instances
+aws iam list-users	List IAM users
+aws lambda list-functions	List Lambda functions
+
+✅ 12. Summary
+Component	Example
+Compute	EC2 Instance, Lambda function
+Storage	S3 Bucket
+Database	RDS MySQL instance
+Networking	VPC with Subnets & IGW
+Security	IAM Policies & Roles
+Monitoring	CloudWatch Alarm
+IaC	CloudFormation template
+CDN	CloudFront Distribution
+
+✅ 13. Key AWS Concepts to Remember
+Regions and AZs
+EC2 vs Lambda vs ECS
+S3 vs EBS vs EFS
+RDS vs DynamoDB
+```
+---
+---
+# AWS
 # 🚀 AWS Cloud Engineer
 AWS Cloud Engineer roles. It is organized into key sections covering Compute, Storage, Networking, IAM, Cloud Migration, IaC, Cost Optimization, OS Basics, Database Services, and DevOps.
 
@@ -545,208 +705,3 @@ Use CloudWatch to track build & deploy logs.
 
 ---
 ---
-# Coud-Computing-AWS
-```
-✅ 1. What is AWS?
-AWS (Amazon Web Services) is a cloud platform that offers a wide range of services like compute power, storage, databases, networking, security, analytics, and more.
-It helps companies scale their infrastructure without owning physical servers.
-
-✅ 2. Key AWS Concepts
-Concept	Description
-Cloud Computing	On-demand delivery of IT resources over the internet.
-IaaS	Infrastructure as a Service (EC2, S3, VPC).
-PaaS	Platform as a Service (Elastic Beanstalk, RDS).
-SaaS	Software as a Service (Gmail, Office 365).
-✅ 3. AWS Global Infrastructure
-
-Regions → Geographical locations (ex: us-east-1, ap-south-1).
-
-Availability Zones (AZ) → Isolated data centers in a Region.
-
-Edge Locations → Used by CloudFront (CDN).
-
-✅ 4. Core AWS Services
-1️⃣ Compute Services
-➔ EC2 (Elastic Compute Cloud)
-
-Launch virtual servers (instances).
-
-Example:
-
-Launch EC2 instance (Amazon Linux).
-
-SSH Access Example:
-
-ssh -i mykey.pem ec2-user@ec2-public-ip
-
-➔ Lambda (Serverless Compute)
-
-Run code without managing servers.
-
-Example: Simple Python Lambda function
-
-def lambda_handler(event, context):
-    return {
-        'statusCode': 200,
-        'body': 'Hello from AWS Lambda!'
-    }
-
-2️⃣ Storage Services
-➔ S3 (Simple Storage Service)
-
-Object storage for files.
-
-Example: Upload file using AWS CLI
-
-aws s3 cp sample.txt s3://my-bucket-name/sample.txt
-
-➔ EBS (Elastic Block Store)
-
-Persistent block-level storage attached to EC2.
-
-3️⃣ Database Services
-➔ RDS (Relational Database Service)
-
-Managed SQL databases (MySQL, PostgreSQL).
-
-Example: Connect to RDS
-
-mysql -h your-rds-endpoint.amazonaws.com -u admin -p
-
-➔ DynamoDB
-
-NoSQL database.
-
-4️⃣ Networking Services
-➔ VPC (Virtual Private Cloud)
-
-Isolated network.
-
-Example Components of VPC
-
-Subnets
-
-Route Tables
-
-Internet Gateway (IGW)
-
-Security Groups
-
-➔ CloudFront
-
-Content Delivery Network (CDN).
-
-Use Case Example: Distribute static website assets globally with low latency.
-
-✅ 5. Security in AWS
-➔ IAM (Identity and Access Management)
-
-Create Users, Roles, Policies.
-
-Example: Create IAM User CLI
-
-aws iam create-user --user-name AnilUser
-
-
-Example: Attach Policy
-
-aws iam attach-user-policy --user-name AnilUser --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess
-
-✅ 6. Monitoring & Logging
-➔ CloudWatch
-
-Monitor metrics (CPU usage, memory).
-
-Example: Create CloudWatch Alarm
-
-aws cloudwatch put-metric-alarm \
-    --alarm-name HighCPUUtilization \
-    --metric-name CPUUtilization \
-    --namespace AWS/EC2 \
-    --statistic Average \
-    --period 300 \
-    --threshold 80 \
-    --comparison-operator GreaterThanThreshold \
-    --evaluation-periods 2 \
-    --alarm-actions arn:aws:sns:region:account-id:my-sns-topic
-
-➔ CloudTrail
-
-Track API activity and changes.
-
-✅ 7. Deployment & Automation
-➔ CloudFormation
-
-Infrastructure as Code (IaC).
-
-Example: Simple CloudFormation YAML Template
-
-Resources:
-  MyEC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      InstanceType: t2.micro
-      ImageId: ami-0abcdef1234567890
-
-➔ CodePipeline
-
-CI/CD Automation.
-
-✅ 8. Hands-on Example: Deploy Simple Website on S3 + CloudFront
-Step 1: Create S3 Bucket
-aws s3 mb s3://my-website-bucket
-
-Step 2: Enable Static Website Hosting
-aws s3 website s3://my-website-bucket --index-document index.html
-
-Step 3: Upload Files
-aws s3 cp index.html s3://my-website-bucket/index.html
-
-Step 4: Configure CloudFront
-
-Create distribution via AWS Console.
-
-Use S3 bucket as origin.
-
-✅ 9. Basic Pricing Concept
-
-EC2: Pay per second.
-
-S3: Pay per GB stored.
-
-Lambda: Pay per request and compute time.
-
-Free Tier Available: Useful for beginners.
-
-✅ 10. Best Practices
-
-Use IAM Roles instead of hardcoding keys.
-
-Enable versioning in S3 for backup.
-
-Set up multi-AZ for RDS for High Availability.
-
-Use security groups to allow only required ports.
-
-✅ 11. Useful AWS CLI Commands
-Command	Description
-aws s3 ls	List S3 buckets
-aws ec2 describe-instances	List EC2 instances
-aws iam list-users	List IAM users
-aws lambda list-functions	List Lambda functions
-✅ 12. Summary
-Component	Example
-Compute	EC2 Instance, Lambda function
-Storage	S3 Bucket
-Database	RDS MySQL instance
-Networking	VPC with Subnets & IGW
-Security	IAM Policies & Roles
-Monitoring	CloudWatch Alarm
-IaC	CloudFormation template
-CDN	CloudFront Distribution
-✅ 13. Key AWS Concepts to Remember
-Regions and AZs
-EC2 vs Lambda vs ECS
-S3 vs EBS vs EFS
-RDS vs DynamoDB
-```
