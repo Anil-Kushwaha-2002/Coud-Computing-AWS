@@ -1,5 +1,56 @@
-# AWS
 # Coud-Computing-AWS
+
+## 🔹 What is AWS?
+- **AWS** = Cloud platform by Amazon.  
+- Provides **on-demand services**: computing, storage, databases, networking, security, etc.  
+- Pay-as-you-go model (no upfront hardware cost).  
+
+---
+
+## ⚡ Core AWS Services
+
+### 1️⃣ Compute
+- **EC2 (Elastic Compute Cloud)** → Virtual servers in cloud.  
+- **Lambda** → Serverless functions (run code without managing servers).  
+- **ECS / EKS** → Run Docker containers (ECS = AWS service, EKS = Kubernetes).  
+
+### 2️⃣ Storage
+- **S3 (Simple Storage Service)** → Object storage (files, backups, media).  
+- **EBS (Elastic Block Store)** → Disk storage for EC2.  
+- **Glacier** → Low-cost, long-term archival storage.  
+
+### 3️⃣ Databases
+- **RDS** → Managed relational DB (MySQL, PostgreSQL, Oracle, etc).  
+- **DynamoDB** → NoSQL database.  
+- **Aurora** → High-performance relational DB.  
+
+### 4️⃣ Networking
+- **VPC (Virtual Private Cloud)** → Isolated network for your resources.  
+- **Route 53** → DNS & domain management.  
+- **ELB (Elastic Load Balancer)** → Distributes traffic across servers.  
+- **CloudFront** → Content Delivery Network (CDN).  
+
+### 5️⃣ DevOps / Management
+- **CloudFormation** → Infrastructure as Code (IaC).  
+- **Elastic Beanstalk** → Easy app deployment (PaaS).  
+- **CloudWatch** → Monitoring & logging.  
+- **CodePipeline** → CI/CD pipelines.  
+
+---
+
+## 🛠️ Basic AWS CLI Commands
+
+```bash
+aws configure                               # Setup AWS CLI (access key, secret, region)
+aws s3 ls                                   # List all S3 buckets
+aws ec2 describe-instances                  # List EC2 instances
+aws s3 cp file.txt s3://mybucket/           # Upload file to S3
+aws s3 sync . s3://mybucket                 # Sync local folder with S3 bucket
+aws ec2 start-instances --instance-ids i-1234567890abcdef   # Start EC2
+aws ec2 stop-instances --instance-ids i-1234567890abcdef    # Stop EC2
+```
+---
+---
 ```
 ✅ 1. What is AWS?
 AWS (Amazon Web Services) is a cloud platform that offers a wide range of services like compute power, storage, databases, networking, security, analytics, and more.
